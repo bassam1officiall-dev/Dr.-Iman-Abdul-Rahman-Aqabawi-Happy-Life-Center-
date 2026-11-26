@@ -18,7 +18,14 @@ export function FooterAndMobileDock() {
                 {CENTER_DATA.doctor.nameAr}
               </p>
               <p className="mt-1 text-xs text-[#E5DDD3]/80 sm:text-sm">
-                {CENTER_DATA.doctor.centerNameAr} ({CENTER_DATA.doctor.centerNameEn})
+                {CENTER_DATA.doctor.centerNameAr} —{" "}
+                <span dir="ltr" className="inline-block">
+                  {CENTER_DATA.doctor.centerNameEn}
+                </span>
+              </p>
+              <p className="mt-1 text-xs text-[#E5DDD3]/65">
+                دكتوراه في الصحة النفسية والتربية الخاصة والإرشاد الأسري · عضو
+                هيئة تدريس منتدب بإحدى الجامعات الخاصة
               </p>
             </div>
 

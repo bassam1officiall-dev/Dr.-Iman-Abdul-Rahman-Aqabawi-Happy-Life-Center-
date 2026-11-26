@@ -26,7 +26,7 @@ export function CredentialsStrip() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 divide-y divide-[var(--border-hairline)] rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] md:grid-cols-2 md:divide-y-0 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-[var(--border-hairline)] bg-[var(--border-hairline)] md:grid-cols-2 lg:grid-cols-4">
           {CENTER_DATA.doctor.credentials.map((cred, idx) => (
             <motion.div
               key={cred.title}
@@ -38,7 +38,7 @@ export function CredentialsStrip() {
                 delay: idx * 0.05,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="flex items-start gap-3.5 border-[var(--border-hairline)] p-5 md:border-b md:border-e md:[&:nth-child(2n)]:border-e-0 lg:[&:nth-child(2n)]:border-e lg:[&:nth-child(3n)]:border-e-0 lg:[&:nth-last-child(-n+3)]:border-b-0"
+              className="flex h-full items-start gap-3.5 bg-[var(--bg-surface)] p-5"
             >
               <Award
                 className="mt-1 h-5 w-5 shrink-0 text-[var(--brand-brass)]"
@@ -48,8 +48,13 @@ export function CredentialsStrip() {
                 <h3 className="text-sm font-semibold text-[var(--text-primary)] sm:text-base">
                   {cred.title}
                 </h3>
-                <p className="mt-1 text-xs leading-relaxed text-[var(--text-secondary)] sm:text-sm">
+                <p className="mt-1.5 text-xs leading-relaxed text-[var(--text-secondary)] sm:text-sm">
                   {cred.detail}
+                  {cred.ltrSuffix && (
+                    <span dir="ltr" className="inline-block font-medium">
+                      {cred.ltrSuffix}
+                    </span>
+                  )}
                 </p>
               </div>
             </motion.div>
