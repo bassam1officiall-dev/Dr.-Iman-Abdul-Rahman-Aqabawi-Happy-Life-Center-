@@ -15,7 +15,7 @@ import { FooterAndMobileDock } from "@/components/FooterAndMobileDock";
 export default function HomePage() {
   return (
     <SmoothScrollProvider>
-      <div className="min-h-screen bg-[var(--bg-canvas)] text-[var(--text-primary)]">
+      <div className="min-h-screen overflow-x-clip bg-[var(--bg-canvas)] text-[var(--text-primary)]">
         <Navbar />
         <main>
           <HeroSection />

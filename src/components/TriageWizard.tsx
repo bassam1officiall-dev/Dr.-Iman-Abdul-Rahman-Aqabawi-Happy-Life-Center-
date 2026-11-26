@@ -105,27 +105,27 @@ export function TriageWizard() {
   return (
     <section
       id="triage"
-      className="border-b border-[var(--border-hairline)] bg-[var(--bg-canvas)] py-16 sm:py-24"
+      className="border-b border-[var(--border-hairline)] bg-[var(--bg-canvas)] py-14 md:py-24"
     >
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 text-center">
           <p className="text-xs font-semibold text-[var(--brand-burgundy)]">
             أداة التوجيه السريع
           </p>
-          <h2 className="mt-2 font-editorial text-3xl font-bold text-[var(--text-primary)] sm:text-4xl">
+          <h2 className="mt-2 font-editorial text-2xl font-bold leading-[1.35] text-[var(--text-primary)] [text-wrap:balance] sm:text-3xl">
             من أين أبدأ؟
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-sm text-[var(--text-secondary)] sm:text-base">
+          <p className="mx-auto mt-3 max-w-2xl text-[15px] leading-[1.85] text-[var(--text-secondary)] sm:text-base">
             ثلاث خطوات بسيطة تساعدك على تحديد المسار الأنسب لاحتياجك قبل
             التواصل معنا عبر واتساب.
           </p>
         </div>
 
         {/* Consultation Intake Card */}
-        <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-6 shadow-sm sm:p-10">
+        <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 shadow-sm sm:p-10">
           {/* Stepper Indicator */}
-          <div className="mb-8 flex items-center justify-between border-b border-[var(--border-hairline)] pb-5">
-            <div className="flex flex-wrap items-center gap-2 sm:gap-4">
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-[var(--border-hairline)] pb-5">
+            <div className="no-scrollbar flex snap-x items-center gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
               {[
                 { num: 1, title: "لمين الاستشارة؟" },
                 { num: 2, title: "النقطة الأساسية" },
@@ -138,7 +138,7 @@ export function TriageWizard() {
                     key={item.num}
                     type="button"
                     onClick={() => setStep(item.num as 1 | 2 | 3)}
-                    className={`relative flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold transition-colors sm:text-sm ${
+                    className={`relative min-h-[44px] shrink-0 snap-start flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold transition-colors sm:text-sm ${
                       isActive
                         ? "text-white"
                         : isDone
@@ -166,17 +166,24 @@ export function TriageWizard() {
               })}
             </div>
 
-            {step > 1 && (
-              <button
-                type="button"
-                onClick={() => setStep(1)}
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--text-muted)] hover:text-[var(--brand-burgundy)]"
-              >
-                <RotateCcw className="h-3.5 w-3.5" strokeWidth={1.5} />
-                <span>إعادة البدء</span>
-              </button>
-            )}
+            <div className="flex items-center gap-3">
+              <span className="text-xs font-semibold text-[var(--brand-brass)]">
+                خطوة {step <= 3 ? step : 3} من 3
+              </span>
+              {step > 1 && (
+                <button
+                  type="button"
+                  onClick={() => setStep(1)}
+                  className="inline-flex min-h-[36px] items-center gap-1.5 text-xs font-medium text-[var(--text-muted)] hover:text-[var(--brand-burgundy)]"
+                >
+                  <RotateCcw className="h-3.5 w-3.5 shrink-0" strokeWidth={1.5} />
+                  <span>إعادة</span>
+                </button>
+              )}
+            </div>
           </div>
+
+          <div className="min-h-[240px]">
 
           <AnimatePresence mode="wait">
             {step === 1 && (
@@ -386,15 +393,16 @@ export function TriageWizard() {
                     href={bookingUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2.5 rounded-lg bg-[var(--brand-burgundy)] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--brand-burgundy-hover)] sm:text-base"
+                    className="inline-flex min-h-[48px] items-center gap-2.5 rounded-xl bg-[var(--brand-burgundy)] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[var(--brand-burgundy-hover)] active:scale-[0.98] sm:text-base"
                   >
-                    <MessageCircle className="h-5 w-5" strokeWidth={1.5} />
+                    <MessageCircle className="h-5 w-5 shrink-0" strokeWidth={1.5} />
                     <span>إرسال التفاصيل وحجز الموعد عبر واتساب</span>
                   </a>
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>

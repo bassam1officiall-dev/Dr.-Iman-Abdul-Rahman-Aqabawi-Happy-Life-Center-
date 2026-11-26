@@ -11,19 +11,19 @@ export function SpecialtiesBento() {
   return (
     <section
       id="specialties"
-      className="border-b border-[var(--border-hairline)] bg-[var(--bg-canvas)] py-16 sm:py-24"
+      className="border-b border-[var(--border-hairline)] bg-[var(--bg-canvas)] py-14 md:py-24"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-12 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+        <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
             <p className="text-xs font-semibold text-[var(--brand-burgundy)]">
               التخصصات والبرامج العلاجية
             </p>
-            <h2 className="mt-2 font-editorial text-3xl font-bold text-[var(--text-primary)] sm:text-4xl">
+            <h2 className="mt-2 font-editorial text-2xl font-bold leading-[1.35] text-[var(--text-primary)] [text-wrap:balance] sm:text-3xl">
               مسارات إكلينيكية متكاملة للطفل والأسرة
             </h2>
           </div>
-          <p className="max-w-md text-sm text-[var(--text-secondary)]">
+          <p className="max-w-md text-[15px] leading-[1.85] text-[var(--text-secondary)] sm:text-base">
             كل برنامج يبدأ بفهم السياق الكامل للحالة وتحديد نقاط القوة قبل
             التدخل، بعيداً عن القوالب الجاهزة.
           </p>

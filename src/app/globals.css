@@ -27,6 +27,7 @@
     scroll-behavior: smooth;
     background-color: var(--bg-canvas);
     color: var(--text-primary);
+    overflow-x: clip;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -37,7 +38,7 @@
     color: var(--text-primary);
     line-height: 1.85;
     letter-spacing: 0;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -60,6 +61,15 @@
   font-variant-numeric: tabular-nums;
   direction: ltr;
   unicode-bidi: isolate;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 /* Custom subtle scrollbar */

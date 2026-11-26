@@ -27,6 +27,7 @@ export function CertificatesGallery() {
   const [isZoomed, setIsZoomed] = useState(false);
 
   const trackRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef<number | null>(null);
 
   const filteredCertificates =
     activeCategory === "الكل"
@@ -144,21 +145,21 @@ export function CertificatesGallery() {
     <section
       id="certificates"
       aria-label="ركن الشهادات والاعتمادات"
-      className="border-b border-[var(--border-hairline)] bg-[var(--bg-canvas)] py-16 sm:py-24"
+      className="border-b border-[var(--border-hairline)] bg-[var(--bg-canvas)] py-14 md:py-24"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
             <p className="inline-flex items-center gap-2 text-xs font-semibold text-[var(--brand-burgundy)]">
-              <FileBadge2 className="h-4 w-4" strokeWidth={1.5} />
+              <FileBadge2 className="h-4 w-4 shrink-0" strokeWidth={1.5} />
               <span>التوثيق الأكاديمي والاعتمادات الرسمية</span>
             </p>
-            <h2 className="mt-2 font-editorial text-3xl font-bold text-[var(--text-primary)] sm:text-4xl">
+            <h2 className="mt-2 font-editorial text-2xl font-bold leading-[1.35] text-[var(--text-primary)] [text-wrap:balance] sm:text-3xl">
               ركن الشهادات والاعتمادات
             </h2>
           </div>
-          <p className="max-w-md text-xs leading-relaxed text-[var(--text-secondary)] sm:text-sm">
+          <p className="max-w-md text-[15px] leading-[1.85] text-[var(--text-secondary)] sm:text-base">
             أرشيف موثق للدرجات الجامعية، الدبلومات المهنية، والاعتمادات الدولية
             لدى د. إيمان عبد الرحمن عقباوي — اضغط على أي شهادة للمعاينة بالحجم
             الكامل.
@@ -170,7 +171,7 @@ export function CertificatesGallery() {
           <div
             role="tablist"
             aria-label="تصنيف الشهادات"
-            className="flex flex-wrap items-center gap-2"
+            className="no-scrollbar flex snap-x items-center gap-2 overflow-x-auto pb-1 lg:flex-wrap lg:overflow-visible lg:pb-0"
           >
             {CERTIFICATE_CATEGORIES.map((cat) => {
               const isActive = activeCategory === cat;
@@ -181,7 +182,7 @@ export function CertificatesGallery() {
                   aria-selected={isActive}
                   type="button"
                   onClick={() => handleCategoryChange(cat)}
-                  className={`relative rounded-full px-3.5 py-1.5 text-xs font-semibold transition-colors sm:text-sm ${
+                  className={`relative min-h-[44px] shrink-0 snap-start rounded-full px-4 py-2 text-xs font-semibold transition-colors sm:text-sm ${
                     isActive
                       ? "text-white"
                       : "border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:border-[var(--brand-sage)] hover:text-[var(--text-primary)]"
@@ -246,13 +247,13 @@ export function CertificatesGallery() {
           onScroll={handleScroll}
           onKeyDown={handleTrackKeyDown}
           aria-label="معرض الشهادات"
-          className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 focus:outline-none sm:gap-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 focus:outline-none sm:gap-6"
         >
           {filteredCertificates.map((cert) => (
             <article
               key={cert.id}
               data-cert-card
-              className="group flex w-[85%] shrink-0 snap-start flex-col rounded-2xl border border-[#E5DDD3] bg-[#FFFFFF] p-4 transition-shadow hover:shadow-md sm:w-[68%] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+              className="group flex w-[85vw] max-w-[340px] shrink-0 snap-center flex-col rounded-2xl border border-[#E5DDD3] bg-[#FFFFFF] p-4 transition-shadow hover:shadow-md sm:w-[68%] sm:max-w-none sm:snap-start md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
             >
               {/* Museum-Grade Frame */}
               <button
@@ -271,14 +272,17 @@ export function CertificatesGallery() {
                   decoding="async"
                   className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
                 />
-                <span className="absolute bottom-2.5 left-2.5 inline-flex items-center gap-1 rounded-md border border-[#E5DDD3] bg-[#FFFFFF]/95 px-2.5 py-1 text-[11px] font-semibold text-[#1C1A19] opacity-90 shadow-xs transition-opacity group-hover:opacity-100">
-                  <Maximize2 className="h-3 w-3 text-[#6D2434]" strokeWidth={1.5} />
+                <span className="absolute bottom-2.5 left-2.5 inline-flex items-center gap-1 rounded-xl border border-[#E5DDD3] bg-[#FFFFFF]/95 px-2.5 py-1 text-[11px] font-semibold text-[#1C1A19] opacity-90 shadow-xs transition-opacity group-hover:opacity-100">
+                  <Maximize2
+                    className="h-3 w-3 shrink-0 text-[#6D2434]"
+                    strokeWidth={1.5}
+                  />
                   <span>تكبير</span>
                 </span>
               </button>
 
-              {/* Metadata below frame */}
-              <div className="mt-4 flex flex-1 flex-col">
+              {/* Metadata below frame (unified min-height) */}
+              <div className="mt-4 flex min-h-[112px] flex-1 flex-col">
                 <div className="flex items-center justify-between gap-2">
                   <span className="inline-flex items-center rounded-full bg-[#F1EAE0] px-2.5 py-0.5 text-[11px] font-semibold text-[#1E433C]">
                     {cert.issuer} ·{" "}
@@ -290,7 +294,7 @@ export function CertificatesGallery() {
                   {cert.title}
                 </h3>
 
-                <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-[#524D48] sm:text-sm">
+                <p className="mt-1.5 line-clamp-2 text-[15px] leading-[1.7] text-[#524D48] sm:text-sm">
                   {cert.description}
                 </p>
               </div>
@@ -334,16 +338,16 @@ export function CertificatesGallery() {
                   type="button"
                   onClick={() => setIsZoomed((z) => !z)}
                   aria-label={isZoomed ? "تصغير الشهادة" : "تكبير الشهادة"}
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-[#FAF7F2]/20 bg-[#FAF7F2]/10 px-3 py-1.5 text-xs font-medium text-[#FAF7F2] transition-colors hover:bg-[#FAF7F2]/20"
+                  className="inline-flex h-11 items-center gap-1.5 rounded-xl border border-[#FAF7F2]/20 bg-[#FAF7F2]/10 px-3.5 text-xs font-medium text-[#FAF7F2] transition-colors hover:bg-[#FAF7F2]/20"
                 >
                   {isZoomed ? (
                     <>
-                      <ZoomOut className="h-4 w-4" strokeWidth={1.5} />
+                      <ZoomOut className="h-4 w-4 shrink-0" strokeWidth={1.5} />
                       <span>تصغير</span>
                     </>
                   ) : (
                     <>
-                      <ZoomIn className="h-4 w-4" strokeWidth={1.5} />
+                      <ZoomIn className="h-4 w-4 shrink-0" strokeWidth={1.5} />
                       <span>تكبير</span>
                     </>
                   )}
@@ -356,37 +360,52 @@ export function CertificatesGallery() {
                     setIsZoomed(false);
                   }}
                   aria-label="إغلاق المعاينة"
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#FAF7F2]/20 bg-[#FAF7F2]/10 text-[#FAF7F2] transition-colors hover:bg-[#6D2434]"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[#FAF7F2]/20 bg-[#FAF7F2]/10 text-[#FAF7F2] transition-colors hover:bg-[#6D2434]"
                 >
-                  <X className="h-4 w-4" strokeWidth={1.5} />
+                  <X className="h-5 w-5" strokeWidth={1.5} />
                 </button>
               </div>
             </div>
 
-            {/* Center Image + Prev/Next */}
+            {/* Center Image + Prev/Next + Touch Swipe */}
             <div
               onClick={(e) => e.stopPropagation()}
+              onTouchStart={(e) => {
+                touchStartX.current = e.touches[0]?.clientX ?? null;
+              }}
+              onTouchEnd={(e) => {
+                if (touchStartX.current === null || isZoomed) return;
+                const endX = e.changedTouches[0]?.clientX ?? touchStartX.current;
+                const diff = endX - touchStartX.current;
+                touchStartX.current = null;
+                if (Math.abs(diff) < 40) return;
+                if (diff > 0) {
+                  goLightboxNext();
+                } else {
+                  goLightboxPrev();
+                }
+              }}
               className="relative mx-auto my-3 flex w-full max-w-6xl flex-1 items-center justify-center overflow-hidden"
             >
               <button
                 type="button"
                 onClick={goLightboxPrev}
                 aria-label="الشهادة السابقة"
-                className="absolute right-1 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#FAF7F2]/25 bg-[#1B2421]/80 text-[#FAF7F2] transition-colors hover:bg-[#6D2434] sm:right-3"
+                className="absolute right-1 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#FAF7F2]/25 bg-[#1B2421]/80 text-[#FAF7F2] transition-colors hover:bg-[#6D2434] sm:right-3"
               >
                 <ChevronRight className="h-5 w-5" strokeWidth={1.5} />
               </button>
 
               <div
                 onClick={() => setIsZoomed((z) => !z)}
-                className={`flex max-h-[68vh] w-full items-center justify-center overflow-auto rounded-xl border border-[#FAF7F2]/15 bg-[#F5EFE6] p-3 sm:p-5 ${
+                className={`flex max-h-[64vh] w-full items-center justify-center overflow-auto rounded-2xl border border-[#FAF7F2]/15 bg-[#F5EFE6] p-2.5 sm:p-5 ${
                   isZoomed ? "cursor-zoom-out" : "cursor-zoom-in"
                 }`}
               >
                 <img
                   src={lightboxItem.fullSrc}
                   alt={lightboxItem.title}
-                  className={`max-h-[62vh] w-auto object-contain transition-transform duration-300 ${
+                  className={`max-h-[58vh] w-full object-contain transition-transform duration-300 sm:max-h-[60vh] ${
                     isZoomed ? "scale-150 sm:scale-[1.75]" : "scale-100"
                   }`}
                 />
@@ -396,7 +415,7 @@ export function CertificatesGallery() {
                 type="button"
                 onClick={goLightboxNext}
                 aria-label="الشهادة التالية"
-                className="absolute left-1 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#FAF7F2]/25 bg-[#1B2421]/80 text-[#FAF7F2] transition-colors hover:bg-[#6D2434] sm:left-3"
+                className="absolute left-1 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#FAF7F2]/25 bg-[#1B2421]/80 text-[#FAF7F2] transition-colors hover:bg-[#6D2434] sm:left-3"
               >
                 <ChevronLeft className="h-5 w-5" strokeWidth={1.5} />
               </button>

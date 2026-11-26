@@ -35,7 +35,7 @@ export function BranchesBookingHub() {
   return (
     <section
       id="branches"
-      className="border-b border-[var(--border-hairline)] bg-[var(--bg-canvas)] py-16 sm:py-24"
+      className="border-b border-[var(--border-hairline)] bg-[var(--bg-canvas)] py-14 md:py-24"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
@@ -43,11 +43,11 @@ export function BranchesBookingHub() {
             <p className="text-xs font-semibold text-[var(--brand-burgundy)]">
               الفروع والمواعيد والحجز
             </p>
-            <h2 className="mt-2 font-editorial text-3xl font-bold text-[var(--text-primary)] sm:text-4xl">
+            <h2 className="mt-2 font-editorial text-2xl font-bold leading-[1.35] text-[var(--text-primary)] [text-wrap:balance] sm:text-3xl">
               تواصلي معنا في البدرشين أو فيصل أو أونلاين
             </h2>
           </div>
-          <p className="text-xs text-[var(--text-muted)] sm:text-sm">
+          <p className="text-[15px] text-[var(--text-muted)] sm:text-sm">
             تُحدث حالة العمل تلقائياً حسب توقيت القاهرة المحلي.
           </p>
         </div>
@@ -59,7 +59,7 @@ export function BranchesBookingHub() {
             <div
               role="tablist"
               aria-label="فروع مركز الحياة السعيدة"
-              className="mb-6 grid grid-cols-3 gap-2 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-sand)] p-1.5"
+              className="no-scrollbar mb-6 flex snap-x gap-2 overflow-x-auto rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-sand)] p-1.5 sm:grid sm:grid-cols-3 sm:overflow-visible"
             >
               {CENTER_DATA.branches.map((branch) => {
                 const isActive = branch.id === selectedId;
@@ -70,7 +70,7 @@ export function BranchesBookingHub() {
                     aria-selected={isActive}
                     type="button"
                     onClick={() => setSelectedId(branch.id)}
-                    className={`relative rounded-lg px-3 py-2.5 text-xs font-semibold transition-colors sm:text-sm ${
+                    className={`relative min-h-[44px] shrink-0 snap-start rounded-xl px-4 py-2.5 text-xs font-semibold transition-colors sm:text-sm ${
                       isActive
                         ? "text-white"
                         : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
@@ -84,10 +84,12 @@ export function BranchesBookingHub() {
                           stiffness: 350,
                           damping: 30,
                         }}
-                        className="absolute inset-0 rounded-lg bg-[var(--brand-sage)]"
+                        className="absolute inset-0 rounded-xl bg-[var(--brand-sage)]"
                       />
                     )}
-                    <span className="relative z-10">{branch.name}</span>
+                    <span className="relative z-10 whitespace-nowrap">
+                      {branch.name}
+                    </span>
                   </button>
                 );
               })}
@@ -186,9 +188,9 @@ export function BranchesBookingHub() {
                   href={branchWhatsAppUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg bg-[var(--brand-burgundy)] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--brand-burgundy-hover)]"
+                  className="inline-flex min-h-[48px] items-center gap-2 rounded-xl bg-[var(--brand-burgundy)] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[var(--brand-burgundy-hover)] active:scale-[0.98]"
                 >
-                  <MessageCircle className="h-4 w-4" strokeWidth={1.5} />
+                  <MessageCircle className="h-4 w-4 shrink-0" strokeWidth={1.5} />
                   <span>حجز موعد في {activeBranch.name}</span>
                 </a>
               </div>

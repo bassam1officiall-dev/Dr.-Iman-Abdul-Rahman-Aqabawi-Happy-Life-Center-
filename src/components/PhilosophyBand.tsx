@@ -11,7 +11,7 @@ export function PhilosophyBand() {
   return (
     <section
       aria-label="فلسفة المركز"
-      className="relative overflow-hidden border-b border-[var(--border-hairline)] bg-[var(--bg-ink-dark)] py-20 text-[#FAF7F2] sm:py-28"
+      className="relative overflow-hidden border-b border-[var(--border-hairline)] bg-[var(--bg-ink-dark)] py-14 text-[#FAF7F2] md:py-24"
     >
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -21,17 +21,17 @@ export function PhilosophyBand() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="text-center"
         >
-          <p className="text-xs font-semibold tracking-wider text-[var(--brand-brass)]">
+          <p className="text-xs font-semibold text-[var(--brand-brass)]">
             فلسفة مركز الحياة السعيدة
           </p>
 
-          <blockquote className="mt-6 font-editorial text-2xl font-bold leading-[1.6] text-[#FAF7F2] sm:text-3xl lg:text-4xl">
+          <blockquote className="mt-6 font-editorial text-2xl font-bold leading-[1.6] text-[#FAF7F2] [text-wrap:balance] sm:text-3xl lg:text-4xl">
             &laquo;{CENTER_DATA.doctor.signatureQuote}&raquo;
           </blockquote>
 
           <div className="mx-auto my-8 h-px w-24 bg-[var(--brand-brass)]/60" />
 
-          <p className="mx-auto max-w-2xl text-base leading-relaxed text-[#E5DDD3] sm:text-lg">
+          <p className="mx-auto max-w-2xl text-[15px] leading-[1.85] text-[#E5DDD3] sm:text-lg">
             {CENTER_DATA.doctor.philosophySupporting}
           </p>
 

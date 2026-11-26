@@ -24,25 +24,28 @@ export function TrainingPortal() {
   return (
     <section
       id="training"
-      className="border-b border-[var(--border-hairline)] bg-[var(--bg-canvas)] py-16 sm:py-24"
+      className="border-b border-[var(--border-hairline)] bg-[var(--bg-canvas)] py-14 md:py-24"
     >
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
         {/* Right Column (Info) */}
         <div className="lg:col-span-5">
           <div className="inline-flex items-center gap-2 rounded-full bg-[var(--brand-sage-soft)] px-3.5 py-1 text-xs font-semibold text-[var(--brand-sage)]">
-            <GraduationCap className="h-4 w-4" strokeWidth={1.5} />
+            <GraduationCap className="h-4 w-4 shrink-0" strokeWidth={1.5} />
             <span>للفريق التخصصي والخريجات</span>
           </div>
 
-          <h2 className="mt-4 font-editorial text-3xl font-bold text-[var(--text-primary)] sm:text-4xl">
+          <h2 className="mt-4 font-editorial text-2xl font-bold leading-[1.35] text-[var(--text-primary)] [text-wrap:balance] sm:text-3xl">
             بوابة التدريب العملي والتطبيقي للخريجات
           </h2>
 
-          <p className="mt-4 text-sm leading-[1.85] text-[var(--text-secondary)] sm:text-base">
+          <p className="mt-4 text-[15px] leading-[1.85] text-[var(--text-secondary)] sm:text-base">
             يعلن مركز الحياة السعيدة عن فتح باب التدريب العملي الميداني للخريجات
             والمتخصصات الراغبات في اكتساب خبرة إكلينيكية حقيقية في التعامل مع
-            الحالات، تحت إشراف مباشر من د. إيمان عبد الرحمن عقباوي (مدرب معتمد
-            TOT).
+            الحالات، تحت إشراف مباشر من د. إيمان عبد الرحمن عقباوي — مدرب معتمد{" "}
+            <span dir="ltr" className="inline-block font-medium">
+              TOT
+            </span>
+            .
           </p>
 
           <div className="mt-6 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-sand)] p-5">
@@ -160,9 +163,9 @@ export function TrainingPortal() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg bg-[var(--brand-burgundy)] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--brand-burgundy-hover)]"
+                className="inline-flex min-h-[48px] items-center gap-2 rounded-xl bg-[var(--brand-burgundy)] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[var(--brand-burgundy-hover)] active:scale-[0.98]"
               >
-                <MessageCircle className="h-4 w-4" strokeWidth={1.5} />
+                <MessageCircle className="h-4 w-4 shrink-0" strokeWidth={1.5} />
                 <span>إرسال طلب التدريب عبر واتساب</span>
               </a>
             </div>

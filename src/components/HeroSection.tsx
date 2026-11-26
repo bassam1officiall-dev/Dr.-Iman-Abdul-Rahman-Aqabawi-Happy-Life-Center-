@@ -47,9 +47,9 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative border-b border-[var(--border-hairline)] bg-[var(--bg-canvas)] py-14 sm:py-20 lg:py-24"
+      className="relative border-b border-[var(--border-hairline)] bg-[var(--bg-canvas)] py-14 md:py-24"
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8">
         {/* Right Column (RTL Primary — 7 cols) */}
         <motion.div
           initial={{ opacity: 0, y: 18 }}
@@ -63,37 +63,44 @@ export function HeroSection() {
             <span>البدرشين · فيصل · أونلاين</span>
           </p>
 
-          <h1 className="font-editorial text-3xl font-bold text-[var(--text-primary)] sm:text-4xl lg:text-[2.85rem] lg:leading-[1.3]">
+          <h1 className="font-editorial text-2xl font-bold leading-[1.35] text-[var(--text-primary)] [text-wrap:balance] sm:text-4xl lg:text-[2.85rem] lg:leading-[1.3]">
             الفهم الصحيح هو أول خطوة للتغيير — وليس الحكم أو الوصمة.
           </h1>
 
-          <p className="mt-5 max-w-[65ch] text-base leading-[1.85] text-[var(--text-secondary)] sm:text-lg">
+          <p className="mt-5 max-w-[65ch] text-[15px] leading-[1.85] text-[var(--text-secondary)] sm:text-base">
             مع{" "}
             <strong className="font-semibold text-[var(--text-primary)]">
               {CENTER_DATA.doctor.nameAr}
             </strong>
             ، دكتوراه في الصحة النفسية والتربية الخاصة والإرشاد الأسري، عضو هيئة
-            تدريس منتدب بإحدى الجامعات الخاصة، واستشاري علاج ADHD والعلاقات
-            الأسرية وتعديل السلوك وتحسين الوظائف التنفيذية للأطفال والكبار.
+            تدريس منتدب بإحدى الجامعات الخاصة، واستشاري علاج{" "}
+            <span dir="ltr" className="inline-block font-medium">
+              ADHD
+            </span>{" "}
+            والعلاقات الأسرية وتعديل السلوك وتحسين الوظائف التنفيذية للأطفال
+            والكبار.
           </p>
 
           {/* Dual CTAs */}
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+          <div className="mt-8 flex flex-wrap items-center gap-3.5">
             <a
               href={bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 rounded-lg bg-[var(--brand-burgundy)] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--brand-burgundy-hover)] sm:text-base"
+              className="inline-flex min-h-[48px] items-center gap-2.5 rounded-xl bg-[var(--brand-burgundy)] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[var(--brand-burgundy-hover)] active:scale-[0.98] sm:text-base"
             >
-              <MessageCircle className="h-5 w-5" strokeWidth={1.5} />
+              <MessageCircle className="h-5 w-5 shrink-0" strokeWidth={1.5} />
               <span>احجز جلستك عبر واتساب</span>
             </a>
 
             <a
               href="#triage"
-              className="inline-flex items-center gap-2.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-5 py-3.5 text-sm font-semibold text-[var(--text-primary)] transition-colors hover:border-[var(--brand-sage)] hover:text-[var(--brand-sage)] sm:text-base"
+              className="inline-flex min-h-[48px] items-center gap-2.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-5 py-3 text-sm font-semibold text-[var(--text-primary)] transition-all hover:border-[var(--brand-sage)] hover:text-[var(--brand-sage)] active:scale-[0.98] sm:text-base"
             >
-              <Compass className="h-5 w-5 text-[var(--brand-sage)]" strokeWidth={1.5} />
+              <Compass
+                className="h-5 w-5 shrink-0 text-[var(--brand-sage)]"
+                strokeWidth={1.5}
+              />
               <span>اختار نوع الجلسة المناسب (توجيه سريع)</span>
             </a>
           </div>

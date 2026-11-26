@@ -22,14 +22,14 @@ export function CommunitySection() {
   return (
     <section
       aria-label="الأنشطة التربوية والمبادرات المجتمعية"
-      className="border-b border-[var(--border-hairline)] bg-[var(--bg-sand)] py-16 sm:py-24"
+      className="border-b border-[var(--border-hairline)] bg-[var(--bg-sand)] py-14 md:py-24"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10">
           <p className="text-xs font-semibold text-[var(--brand-sage)]">
             خارج جدران الجلسة
           </p>
-          <h2 className="mt-2 font-editorial text-3xl font-bold text-[var(--text-primary)] sm:text-4xl">
+          <h2 className="mt-2 font-editorial text-2xl font-bold leading-[1.35] text-[var(--text-primary)] [text-wrap:balance] sm:text-3xl">
             الأنشطة التربوية والمبادرات المجتمعية
           </h2>
         </div>

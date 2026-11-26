@@ -37,21 +37,24 @@ export function KnowledgeHub() {
   return (
     <section
       id="knowledge"
-      className="border-b border-[var(--border-hairline)] bg-[var(--bg-sand)] py-16 sm:py-24"
+      className="border-b border-[var(--border-hairline)] bg-[var(--bg-sand)] py-14 md:py-24"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+        <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
             <p className="text-xs font-semibold text-[var(--brand-burgundy)]">
               مكتبة الفهم والتوعية
             </p>
-            <h2 className="mt-2 font-editorial text-3xl font-bold text-[var(--text-primary)] sm:text-4xl">
+            <h2 className="mt-2 font-editorial text-2xl font-bold leading-[1.35] text-[var(--text-primary)] [text-wrap:balance] sm:text-3xl">
               محتوى علمي مبسط من صفحات المركز
             </h2>
           </div>
-          <p className="max-w-md text-sm text-[var(--text-secondary)]">
-            مقتطفات وريلز حقيقية تساعد الأمهات والأزواج على فهم ADHD، الوظائف
-            التنفيذية، وعلم النفس الإيجابي بوعي.
+          <p className="max-w-md text-[15px] leading-[1.85] text-[var(--text-secondary)] sm:text-base">
+            مقتطفات وريلز حقيقية تساعد الأمهات والأزواج على فهم{" "}
+            <span dir="ltr" className="inline-block font-medium">
+              ADHD
+            </span>
+            ، الوظائف التنفيذية، وعلم النفس الإيجابي بوعي.
           </p>
         </div>
 
@@ -59,7 +62,7 @@ export function KnowledgeHub() {
         <div
           role="tablist"
           aria-label="تصنيفات مكتبة الوعي"
-          className="mb-10 flex flex-wrap items-center gap-2 border-b border-[var(--border-hairline)] pb-3"
+          className="no-scrollbar mb-10 flex snap-x items-center gap-2 overflow-x-auto border-b border-[var(--border-hairline)] pb-1 md:flex-wrap md:overflow-visible md:pb-3"
         >
           {CATEGORIES.map((cat) => {
             const isActive = activeCategory === cat;
@@ -70,7 +73,7 @@ export function KnowledgeHub() {
                 aria-selected={isActive}
                 type="button"
                 onClick={() => setActiveCategory(cat)}
-                className={`relative px-3.5 py-2 text-xs font-semibold transition-colors sm:text-sm ${
+                className={`relative min-h-[44px] shrink-0 snap-start px-3.5 py-2 text-xs font-semibold transition-colors sm:text-sm ${
                   isActive
                     ? "text-[var(--brand-burgundy)]"
                     : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
@@ -81,7 +84,7 @@ export function KnowledgeHub() {
                   <motion.span
                     layoutId="knowledgeTabUnderline"
                     transition={{ type: "spring", stiffness: 380, damping: 32 }}
-                    className="absolute inset-x-1 -bottom-3 h-0.5 bg-[var(--brand-burgundy)]"
+                    className="absolute inset-x-1 bottom-0 h-0.5 bg-[var(--brand-burgundy)] md:-bottom-3"
                   />
                 )}
               </button>

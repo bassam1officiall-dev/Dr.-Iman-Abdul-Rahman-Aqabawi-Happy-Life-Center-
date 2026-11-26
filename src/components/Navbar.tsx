@@ -21,17 +21,17 @@ export function Navbar() {
   );
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--border-hairline)] bg-[var(--bg-canvas)]/95 backdrop-blur-sm">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-40 border-b border-[#E5DDD3] bg-[var(--bg-canvas)]/90 backdrop-blur-md">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-4 sm:px-6 lg:px-8">
         {/* Brand Wordmark */}
         <a
           href="#hero"
-          className="flex flex-col text-start focus:outline-none"
+          className="flex min-w-0 flex-col text-start focus:outline-none"
         >
-          <span className="font-editorial text-lg font-bold text-[var(--text-primary)] sm:text-xl">
+          <span className="truncate whitespace-nowrap font-editorial text-[15px] font-bold text-[var(--text-primary)] sm:text-xl">
             {CENTER_DATA.doctor.nameAr}
           </span>
-          <span className="text-xs font-medium text-[var(--brand-sage)]">
+          <span className="truncate text-[11px] font-medium text-[var(--brand-sage)] sm:text-xs">
             مركز الحياة السعيدة · البدرشين · فيصل
           </span>
         </a>
@@ -53,14 +53,14 @@ export function Navbar() {
         </nav>
 
         {/* Desktop CTA + Mobile Menu Button */}
-        <div className="flex items-center gap-3">
+        <div className="flex shrink-0 items-center gap-3">
           <a
             href={directBookingUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-2 rounded-lg bg-[var(--brand-burgundy)] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[var(--brand-burgundy-hover)] sm:inline-flex"
+            className="hidden min-h-[44px] items-center gap-2 rounded-xl bg-[var(--brand-burgundy)] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[var(--brand-burgundy-hover)] active:scale-[0.98] sm:inline-flex"
           >
-            <MessageCircle className="h-4 w-4" strokeWidth={1.5} />
+            <MessageCircle className="h-4 w-4 shrink-0" strokeWidth={1.5} />
             <span>احجز عبر واتساب</span>
           </a>
 
@@ -69,7 +69,7 @@ export function Navbar() {
             onClick={() => setMobileOpen((prev) => !prev)}
             aria-label={mobileOpen ? "إغلاق القائمة" : "فتح القائمة"}
             aria-expanded={mobileOpen}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-primary)] lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-primary)] active:scale-[0.98] lg:hidden"
           >
             {mobileOpen ? (
               <X className="h-5 w-5" strokeWidth={1.5} />
