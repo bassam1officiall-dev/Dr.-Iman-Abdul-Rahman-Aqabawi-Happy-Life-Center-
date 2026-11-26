@@ -143,21 +143,26 @@ export function HeroSection() {
           transition={{ duration: 0.7, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
           className="relative lg:col-span-5"
         >
-          {/* Architectural Portrait Placeholder Frame */}
-          <div className="relative overflow-hidden rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-sand)] p-6 sm:p-8">
-            <div className="flex aspect-[4/5] flex-col items-center justify-center rounded-xl border border-dashed border-[var(--brand-brass)]/50 bg-[var(--bg-canvas)]/70 p-6 text-center">
-              <span className="mb-3 inline-block rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3 py-1 text-xs font-medium text-[var(--brand-brass)]">
-                إطار الصورة الرسمية
-              </span>
-              <p className="font-editorial text-lg font-bold text-[var(--text-primary)]">
-                [PLACEHOLDER: صورة استوديو عالية الدقة للدكتورة إيمان داخل العيادة]
-              </p>
-              <p className="mt-2 max-w-xs text-xs text-[var(--text-muted)]">
-                مقترح: بورتريه دافئ داخل غرفة الاستشارات بألوان الخشب والكتان
-              </p>
-            </div>
+          {/* Official Editorial Portrait Frame */}
+          <div className="relative overflow-hidden rounded-2xl border border-[#E5DDD3] bg-[var(--bg-sand)] p-4 shadow-sm sm:p-6">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="relative aspect-[4/4.5] max-h-[420px] w-full overflow-hidden rounded-xl border border-[#E5DDD3] bg-[#FAF7F2] lg:aspect-[4/5] lg:max-h-none"
+            >
+              <img
+                src="/images/dr-eman-hero.webp"
+                alt="د. إيمان عبد الرحمن عقباوي - مديرة مركز الحياة السعيدة"
+                width={1200}
+                height={1207}
+                fetchPriority="high"
+                decoding="async"
+                className="h-full w-full object-cover object-top"
+              />
+            </motion.div>
 
-            {/* Overlapping Clinic Wall Note Card */}
+            {/* Clinic Wall Note Card (positioned cleanly below portrait) */}
             <div className="mt-5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 shadow-sm">
               <div className="flex items-start justify-between gap-3">
                 <div>

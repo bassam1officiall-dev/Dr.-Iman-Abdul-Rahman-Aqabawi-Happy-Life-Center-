@@ -42,12 +42,21 @@ export const metadata: Metadata = {
     locale: "ar_EG",
     type: "website",
     siteName: "مركز الحياة السعيدة",
+    images: [
+      {
+        url: "/images/dr-eman-hero.webp",
+        width: 1200,
+        height: 1207,
+        alt: "د. إيمان عبد الرحمن عقباوي - مديرة مركز الحياة السعيدة",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "د. إيمان عبد الرحمن عقباوي | مركز الحياة السعيدة",
     description:
       "دكتوراه في الصحة النفسية والتربية الخاصة والإرشاد الأسري — استشاري علاج ADHD والعلاقات الأسرية وتعديل السلوك في البدرشين وفيصل وأونلاين.",
+    images: ["/images/dr-eman-hero.webp"],
   },
 };
 
