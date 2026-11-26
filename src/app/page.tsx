@@ -2,6 +2,7 @@ import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
 import { CredentialsStrip } from "@/components/CredentialsStrip";
+import { CertificatesGallery } from "@/components/CertificatesGallery";
 import { TriageWizard } from "@/components/TriageWizard";
 import { SpecialtiesBento } from "@/components/SpecialtiesBento";
 import { PhilosophyBand } from "@/components/PhilosophyBand";
@@ -19,6 +20,7 @@ export default function HomePage() {
         <main>
           <HeroSection />
           <CredentialsStrip />
+          <CertificatesGallery />
           <TriageWizard />
           <SpecialtiesBento />
           <PhilosophyBand />
