@@ -11,7 +11,8 @@ import {
   MapPin,
   Users,
 } from "lucide-react";
-import { buildWhatsAppUrl, CENTER_DATA } from "@/data/centerData";
+import { CENTER_DATA } from "@/data/centerData";
+import { navigateToBookingForm } from "@/lib/bookingNavigation";
 
 const BREATH_PHASES = [
   { label: "شهيق هادئ", seconds: 4 },
@@ -37,10 +38,6 @@ export function HeroSection() {
     }, 1000);
     return () => clearInterval(interval);
   }, [breathingOpen]);
-
-  const bookingUrl = buildWhatsAppUrl(
-    "السلام عليكم، أرغب في حجز جلسة استشارية في مركز الحياة السعيدة مع د. إيمان عبد الرحمن عقباوي."
-  );
 
   const currentPhase = BREATH_PHASES[phaseIndex];
 
@@ -83,18 +80,18 @@ export function HeroSection() {
 
           {/* Dual CTAs */}
           <div className="mt-8 flex flex-wrap items-center gap-3.5">
-            <a
-              href={bookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => navigateToBookingForm()}
               className="inline-flex min-h-[48px] items-center gap-2.5 rounded-xl bg-[var(--brand-burgundy)] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[var(--brand-burgundy-hover)] active:scale-[0.98] sm:text-base"
             >
               <MessageCircle className="h-5 w-5 shrink-0" strokeWidth={1.5} />
-              <span>احجز جلستك عبر واتساب</span>
-            </a>
+              <span>احجز جلستك الآن</span>
+            </button>
 
-            <a
-              href="#triage"
+            <button
+              type="button"
+              onClick={() => navigateToBookingForm()}
               className="inline-flex min-h-[48px] items-center gap-2.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-5 py-3 text-sm font-semibold text-[var(--text-primary)] transition-all hover:border-[var(--brand-sage)] hover:text-[var(--brand-sage)] active:scale-[0.98] sm:text-base"
             >
               <Compass
@@ -102,7 +99,7 @@ export function HeroSection() {
                 strokeWidth={1.5}
               />
               <span>اختار نوع الجلسة المناسب (توجيه سريع)</span>
-            </a>
+            </button>
           </div>
 
           {/* Verified Trust Strip */}
@@ -202,8 +199,8 @@ export function HeroSection() {
                               phaseIndex === 0
                                 ? [0.85, 1.15]
                                 : phaseIndex === 1
-                                ? 1.15
-                                : [1.15, 0.85],
+                                  ? 1.15
+                                  : [1.15, 0.85],
                           }}
                           transition={{ duration: 4, ease: "easeInOut" }}
                           className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[var(--brand-sage)] bg-[var(--brand-sage-soft)] text-sm font-bold text-[var(--brand-sage)] tabular-nums-ltr"

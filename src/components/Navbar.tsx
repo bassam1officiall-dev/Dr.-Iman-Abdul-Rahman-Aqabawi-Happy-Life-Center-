@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
-import { buildWhatsAppUrl, CENTER_DATA } from "@/data/centerData";
+import { CENTER_DATA } from "@/data/centerData";
+import { navigateToBookingForm } from "@/lib/bookingNavigation";
 
 const NAV_LINKS = [
   { href: "#hero", label: "الرئيسية" },
@@ -15,10 +16,6 @@ const NAV_LINKS = [
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  const directBookingUrl = buildWhatsAppUrl(
-    "السلام عليكم، أود الاستفسار عن حجز جلسة في مركز الحياة السعيدة مع د. إيمان عبد الرحمن عقباوي."
-  );
 
   return (
     <header className="sticky top-0 z-40 border-b border-[#E5DDD3] bg-[var(--bg-canvas)]/90 backdrop-blur-md">
@@ -54,15 +51,14 @@ export function Navbar() {
 
         {/* Desktop CTA + Mobile Menu Button */}
         <div className="flex shrink-0 items-center gap-3">
-          <a
-            href={directBookingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => navigateToBookingForm()}
             className="hidden min-h-[44px] items-center gap-2 rounded-xl bg-[var(--brand-burgundy)] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[var(--brand-burgundy-hover)] active:scale-[0.98] sm:inline-flex"
           >
             <MessageCircle className="h-4 w-4 shrink-0" strokeWidth={1.5} />
-            <span>احجز عبر واتساب</span>
-          </a>
+            <span>احجز جلستك الآن</span>
+          </button>
 
           <button
             type="button"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft,
@@ -13,6 +13,10 @@ import {
   Lock,
 } from "lucide-react";
 import { buildWhatsAppUrl, CENTER_DATA } from "@/data/centerData";
+import {
+  BOOKING_FOCUS_EVENT,
+  BookingFocusDetail,
+} from "@/lib/bookingNavigation";
 
 const AUDIENCE_OPTIONS = [
   { id: "child", label: "طفل" },
@@ -118,6 +122,41 @@ export function TriageWizard() {
     age: false,
     phone: false,
   });
+  const [isHighlighted, setIsHighlighted] = useState(false);
+
+  useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+    const handleFocusBooking = (event: Event) => {
+      const custom = event as CustomEvent<BookingFocusDetail>;
+      const detail = custom.detail ?? {};
+
+      if (detail.branchId) {
+        setBranchId(detail.branchId);
+        const branchObj = BRANCH_OPTIONS.find((b) => b.id === detail.branchId);
+        setPreferredDay(
+          branchObj && branchObj.days.length === 1 ? branchObj.days[0] : ""
+        );
+      }
+
+      if (detail.audience) {
+        setAudience(detail.audience);
+        if (detail.focus) {
+          setFocus(detail.focus);
+        }
+      }
+
+      setStep(1);
+      setIsHighlighted(true);
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => setIsHighlighted(false), 1200);
+    };
+
+    window.addEventListener(BOOKING_FOCUS_EVENT, handleFocusBooking);
+    return () => {
+      window.removeEventListener(BOOKING_FOCUS_EVENT, handleFocusBooking);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, []);
 
   const isTrainee = audience === "خريجة للتدريب العملي";
   const focusOptions = isTrainee
@@ -206,7 +245,7 @@ export function TriageWizard() {
   return (
     <section
       id="triage"
-      className="border-b border-[var(--border-hairline)] bg-[var(--bg-canvas)] py-14 md:py-24"
+      className="scroll-mt-24 border-b border-[var(--border-hairline)] bg-[var(--bg-canvas)] py-14 md:py-24"
     >
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 text-center">
@@ -223,7 +262,13 @@ export function TriageWizard() {
         </div>
 
         {/* Consultation Intake Card */}
-        <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 shadow-sm sm:p-10">
+        <div
+          className={`rounded-2xl border bg-[var(--bg-surface)] p-5 shadow-sm transition-all duration-500 sm:p-10 ${
+            isHighlighted
+              ? "border-[var(--brand-burgundy)] ring-2 ring-[var(--brand-burgundy)]/40 ring-offset-4 ring-offset-[var(--bg-canvas)]"
+              : "border-[var(--border-hairline)]"
+          }`}
+        >
           {/* Stepper Indicator */}
           <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-[var(--border-hairline)] pb-5">
             <div className="no-scrollbar flex snap-x items-center gap-2 overflow-x-auto pb-1 lg:flex-wrap lg:overflow-visible lg:pb-0">

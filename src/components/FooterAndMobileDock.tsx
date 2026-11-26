@@ -1,13 +1,10 @@
 "use client";
 
-import { MessageCircle, Compass } from "lucide-react";
-import { buildWhatsAppUrl, CENTER_DATA } from "@/data/centerData";
+import { MessageCircle, MapPin } from "lucide-react";
+import { CENTER_DATA } from "@/data/centerData";
+import { navigateToBookingForm } from "@/lib/bookingNavigation";
 
 export function FooterAndMobileDock() {
-  const directWhatsAppUrl = buildWhatsAppUrl(
-    "السلام عليكم، أود حجز جلسة في مركز الحياة السعيدة مع د. إيمان عبد الرحمن عقباوي."
-  );
-
   return (
     <>
       <footer className="bg-[var(--bg-ink-dark)] pb-28 pt-12 text-[#FAF7F2] md:pb-12">
@@ -64,25 +61,24 @@ export function FooterAndMobileDock() {
       {/* Mobile-First Thumb-Zone Action Bar (< 768px) */}
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[#E5DDD3] bg-[var(--bg-surface)]/95 px-4 pt-2.5 pb-[calc(0.625rem+env(safe-area-inset-bottom))] backdrop-blur-md md:hidden">
         <div className="mx-auto grid max-w-md grid-cols-2 gap-3">
-          <a
-            href="#triage"
-            className="flex h-12 items-center justify-center gap-2 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 text-sm font-semibold text-[var(--text-primary)] transition-transform active:scale-[0.98]"
-          >
-            <Compass
-              className="h-4 w-4 shrink-0 text-[var(--brand-sage)]"
-              strokeWidth={1.5}
-            />
-            <span>التوجيه السريع</span>
-          </a>
-
-          <a
-            href={directWhatsAppUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => navigateToBookingForm()}
             className="flex h-12 items-center justify-center gap-2 rounded-xl bg-[var(--brand-burgundy)] px-3 text-sm font-semibold text-white transition-transform active:scale-[0.98]"
           >
             <MessageCircle className="h-4 w-4 shrink-0" strokeWidth={1.5} />
-            <span>احجز واتساب</span>
+            <span>احجز جلستك الآن</span>
+          </button>
+
+          <a
+            href="#branches"
+            className="flex h-12 items-center justify-center gap-2 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 text-sm font-semibold text-[var(--text-primary)] transition-transform active:scale-[0.98]"
+          >
+            <MapPin
+              className="h-4 w-4 shrink-0 text-[var(--brand-sage)]"
+              strokeWidth={1.5}
+            />
+            <span>الفروع والمواعيد</span>
           </a>
         </div>
       </div>

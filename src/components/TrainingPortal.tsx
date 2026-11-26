@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { GraduationCap, MessageCircle, Check } from "lucide-react";
 import { buildWhatsAppUrl, CENTER_DATA } from "@/data/centerData";
+import { navigateToBookingForm } from "@/lib/bookingNavigation";
 
 export function TrainingPortal() {
   const [selectedSpecialty, setSelectedSpecialty] = useState<string>(
@@ -159,15 +160,31 @@ export function TrainingPortal() {
                 </span>
               </span>
 
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-[48px] items-center gap-2 rounded-xl bg-[var(--brand-burgundy)] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[var(--brand-burgundy-hover)] active:scale-[0.98]"
-              >
-                <MessageCircle className="h-4 w-4 shrink-0" strokeWidth={1.5} />
-                <span>إرسال طلب التدريب عبر واتساب</span>
-              </a>
+              {applicantName.trim().length >= 3 ? (
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-[48px] items-center gap-2 rounded-xl bg-[var(--brand-burgundy)] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[var(--brand-burgundy-hover)] active:scale-[0.98]"
+                >
+                  <MessageCircle className="h-4 w-4 shrink-0" strokeWidth={1.5} />
+                  <span>إرسال طلب التدريب عبر واتساب</span>
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() =>
+                    navigateToBookingForm({
+                      audience: "خريجة للتدريب العملي",
+                      focus: selectedSpecialty,
+                    })
+                  }
+                  className="inline-flex min-h-[48px] items-center gap-2 rounded-xl bg-[var(--brand-burgundy)] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[var(--brand-burgundy-hover)] active:scale-[0.98]"
+                >
+                  <MessageCircle className="h-4 w-4 shrink-0" strokeWidth={1.5} />
+                  <span>إرسال طلب التدريب عبر نموذج الحجز</span>
+                </button>
+              )}
             </div>
           </div>
         </div>

@@ -9,8 +9,9 @@ import {
   ExternalLink,
   CalendarDays,
 } from "lucide-react";
-import { buildWhatsAppUrl, CENTER_DATA } from "@/data/centerData";
+import { CENTER_DATA } from "@/data/centerData";
 import { getBranchLiveStatus } from "@/lib/cairoTime";
+import { navigateToBookingForm } from "@/lib/bookingNavigation";
 
 export function BranchesBookingHub() {
   const [selectedId, setSelectedId] = useState<
@@ -27,10 +28,6 @@ export function BranchesBookingHub() {
     CENTER_DATA.branches.find((b) => b.id === selectedId) ??
     CENTER_DATA.branches[0];
   const liveStatus = getBranchLiveStatus(activeBranch, now);
-
-  const branchWhatsAppUrl = buildWhatsAppUrl(
-    `السلام عليكم، أود حجز موعد في (${activeBranch.name}) بمركز الحياة السعيدة مع د. إيمان عبد الرحمن عقباوي.`
-  );
 
   return (
     <section
@@ -184,15 +181,16 @@ export function BranchesBookingHub() {
               </div>
 
               <div className="mt-7 border-t border-[var(--border-hairline)] pt-5">
-                <a
-                  href={branchWhatsAppUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  type="button"
+                  onClick={() =>
+                    navigateToBookingForm({ branchId: activeBranch.id })
+                  }
                   className="inline-flex min-h-[48px] items-center gap-2 rounded-xl bg-[var(--brand-burgundy)] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[var(--brand-burgundy-hover)] active:scale-[0.98]"
                 >
                   <MessageCircle className="h-4 w-4 shrink-0" strokeWidth={1.5} />
                   <span>حجز موعد في {activeBranch.name}</span>
-                </a>
+                </button>
               </div>
             </div>
           </div>

@@ -10,14 +10,11 @@ import {
   ExternalLink,
   X,
 } from "lucide-react";
-import { buildWhatsAppUrl, CENTER_DATA } from "@/data/centerData";
+import { CENTER_DATA } from "@/data/centerData";
+import { navigateToBookingForm } from "@/lib/bookingNavigation";
 
 export function CommunitySection() {
   const [initiativeModalOpen, setInitiativeModalOpen] = useState(false);
-
-  const tripInquiryUrl = buildWhatsAppUrl(
-    "السلام عليكم، أود الاستفسار عن مواعيد وتفاصيل الرحلات التربوية الترفيهية القادمة للأطفال في مركز الحياة السعيدة."
-  );
 
   return (
     <section
@@ -70,15 +67,14 @@ export function CommunitySection() {
             </div>
 
             <div className="mt-7 border-t border-[var(--border-hairline)] pt-5">
-              <a
-                href={tripInquiryUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={() => navigateToBookingForm()}
                 className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--brand-burgundy)] hover:text-[var(--brand-burgundy-hover)]"
               >
-                <span>الاستفسار عن الرحلة القادمة عبر واتساب</span>
-                <ExternalLink className="h-4 w-4" strokeWidth={1.5} />
-              </a>
+                <span>الاستفسار وحجز الموعد عبر نموذج الحجز</span>
+                <ExternalLink className="h-4 w-4 shrink-0" strokeWidth={1.5} />
+              </button>
             </div>
           </article>
 
